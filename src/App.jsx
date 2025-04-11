@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+//import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+
+      <div className="dealer_block">
+        <div className="dealer_title">Dealer</div>
+        <div className="hole_card">Card 1 (Hole)</div>
+        <div className="dealer_card">Card 2 (Up)</div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="player_block">
+        <div className="player_title">You</div>
+        <div className="player_card1">Card 1</div>
+        <div className="player_card2">Card 2</div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <div className="options">
+        <div className="hit option_box">Hit</div>
+        <div className="stand option_box">Stand</div>
+        <div className="split option_box">Split</div>
+        <div className="double option_box">Double</div>
+      </div>
+    </div>
+    )
 }
 
 export default App
