@@ -18,5 +18,13 @@
 }
 
 .option_box {
+  cursor: pointer;
   padding: 1rem;
+}
+.option_box:hover {
+  cursor: selection;
+}
+
+.card {
+  padding-left: 10px;
 }
