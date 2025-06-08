@@ -5,7 +5,11 @@ import React from 'react'
 
 function App() {
 
-  const [buttonState, setButtonState] = useState();
+  const [answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
+
+  if (answer != "Hit") {
+    setAnswer("Hit");
+  }
 
   return (
     <div>
@@ -22,7 +26,7 @@ function App() {
         <div className="player_card2 card">Card 2</div>
       </div>
 
-      <Buttons currentState={buttonState} changeStateFunction={setButtonState} />
+      <Buttons answer={answer} />
     </div>
     )
 }
