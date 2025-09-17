@@ -1,11 +1,12 @@
 import React from "react";
-//import { useState } from "react";
+import { useContext } from "react";
 
 function Buttons({ answer }) {
 
+
     return (
         <div className="options">
-            <Click name="Hit" currentAnswer={answer} />
+            <Click name="Hit" currentAnswer={answer}  />
             <Click name="Stand" currentAnswer={answer} />
             <Click name="Split" currentAnswer={answer} />
             <Click name="Double" currentAnswer={answer} />
