@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { createContext } from 'react'
-import { scoreContext } from './components/Scores.jsx'
+import { useContext } from 'react'
+import  scoreContext from './components/Scores.jsx'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
 import React from 'react'
@@ -28,7 +28,7 @@ function App() {
         <div className="player_card2 card">Card 2</div>
       </div>
 
-      <Buttons answer={answer} score={scoreContext} total={totalContext} />
+      <Buttons answer={answer} score={useContext(scoreContext)} />
     </div>
     )
 }

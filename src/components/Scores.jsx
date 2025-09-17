@@ -1,6 +1,5 @@
 import { createContext } from "react";
 
-const scoreContext = createContext(0);
-const totalContext = createContext(0);
+const scoreContext = createContext("Test");
 
-export default { scoreContext, totalContext};
+export default scoreContext;
