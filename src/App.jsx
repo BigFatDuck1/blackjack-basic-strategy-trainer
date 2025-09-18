@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
+import Random from './components/Random.jsx'
 import React from 'react'
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
     //TODO: hardcoded answer for now, need component to check answer later
     setAnswer("Hit");
   }
+
+  Random(); //!Delete, for testing only
 
   return (
     <div>
