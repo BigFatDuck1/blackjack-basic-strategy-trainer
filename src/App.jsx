@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { useContext } from 'react'
-import  scoreContext from './components/Scores.jsx'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
 import React from 'react'
@@ -8,8 +6,10 @@ import React from 'react'
 function App() {
 
   const [answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
+  const [score, setScore] = useState([0, 0]); // first number is score, second number is total questions answered
 
   if (answer != "Hit") {
+    //TODO: hardcoded answer for now, need component to check answer later
     setAnswer("Hit");
   }
 
@@ -28,7 +28,7 @@ function App() {
         <div className="player_card2 card">Card 2</div>
       </div>
 
-      <Buttons answer={answer} score={useContext(scoreContext)} />
+      <Buttons answer={answer} score_array={score} setScore={setScore} />
     </div>
     )
 }
