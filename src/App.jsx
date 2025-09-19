@@ -20,15 +20,15 @@ function App() {
     <div>
 
       <div className="dealer_block">
-        <div className="dealer_title">Dealer</div>
         <div className="hole_card card">Card 1 (Hole)</div>
         <div className="dealer_card card">Card 2 (Up)</div>
+        <div className="dealer_title title">Dealer</div>
       </div>
 
       <div className="player_block">
-        <div className="player_title">You</div>
         <div className="player_card1 card">Card 1</div>
         <div className="player_card2 card">Card 2</div>
+        <div className="player_title title">You</div>
       </div>
 
       <Buttons answer={answer} score_array={score} setScore={setScore} />

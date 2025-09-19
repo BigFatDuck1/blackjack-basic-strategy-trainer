@@ -7,7 +7,14 @@
 
 
 .dealer_block, .player_block {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+}
+
+.title {
+  grid-column: 1 / 3;
 }
 
 .options {
