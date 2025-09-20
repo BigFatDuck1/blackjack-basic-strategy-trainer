@@ -14,7 +14,8 @@ function App() {
     setAnswer("Hit");
   }
 
-  Random(); //!Delete, for testing only
+  //TODO: integrate this into a function that generates a new card
+  Random(); // Generate new dealer/player pair
 
   return (
     <div>

@@ -1,5 +1,5 @@
 
-const random_index = (array) => [Math.floor(Math.random() * array.length)]
+const random_index = (array) => Math.floor(Math.random() * array.length);
 
 const available_cards = [2,3,4,5,6,7,8,9,10,"A"];
 const equivalent_to_10 = [10, "J", "Q", "K"];
@@ -35,24 +35,27 @@ function returnCards() {
     const card1 = available_cards[random_index(available_cards)];
     const card2 = available_cards[random_index(available_cards)];
     const card3 = available_cards[random_index(available_cards)];
-    const total = generatePlayerTotal(card1, card2);
+    const card1suit = suites[random_index(suites)];
+    const card2suit = suites[random_index(suites)];
+    const card3suit = suites[random_index(suites)];
+
     if (checkBlackjack(card1, card2) == true) {
-        returnCards();
-        return;
+        console.log("Blackjack, redraw");
+        return returnCards();
     }
-    else {};
-    generatePlayerTotal(total);
-    const obj = {
-        player_card1_string: `${suites[random_index(suites)]} ${card1}`,
-        player_card2_string: `${suites[random_index(suites)]} ${card2}`,
-        dealer_card_string: `${suites[random_index(suites)]} ${card3}`,
-        player_total: total,
-        dealer_total: card3,
+    else {
+        const total = generatePlayerTotal(card1, card2);
+        const obj = {
+            player_card1_string: `${card1suit} ${card1}`,
+            player_card2_string: `${card2suit} ${card2}`,
+            dealer_card_string: `${card3suit} ${card3}`,
+            player_total: total,
+            dealer_total: card3,
+
+        }
+
+        return obj;
     };
-
-    return obj;
 }
-
-console.log(returnCards());
 
 export default returnCards;
