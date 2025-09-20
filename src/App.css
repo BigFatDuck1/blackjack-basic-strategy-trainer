@@ -43,3 +43,11 @@
 .incorrect_button {
   background-color: red;
 }
+
+.next_button_box {
+  margin: 2rem;
+  margin-right: 0rem;
+  display: flex;
+  justify-content: flex-end;
+
+}

@@ -1,7 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Buttons({ answer, score_array, setScore, answered, setAnswered }) {
+function Buttons({ answer, score_array, setScore, answered, setAnswered, nextButtonPressed }) {
 
     return (
         <div className="options">
@@ -9,35 +9,47 @@ function Buttons({ answer, score_array, setScore, answered, setAnswered }) {
             name="Hit" 
             currentAnswer={answer} 
             score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered} 
+            answered={answered} setAnswered={setAnswered}
+            nextButtonPressed={nextButtonPressed} 
             />
 
             <Click name="Stand" 
             currentAnswer={answer} 
             score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered} 
+            answered={answered} setAnswered={setAnswered}
+            nextButtonPressed={nextButtonPressed} 
             />
 
             <Click name="Split" 
             currentAnswer={answer} 
             score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered} 
+            answered={answered} setAnswered={setAnswered}
+            nextButtonPressed={nextButtonPressed} 
             />
 
             <Click name="Double" 
             currentAnswer={answer} 
             score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered} 
+            answered={answered} setAnswered={setAnswered}
+            nextButtonPressed={nextButtonPressed} 
             />
         </div>
     )
 }
 
-function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered }) {
+function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered, nextButtonPressed }) {
     
     const score = score_array[0];
     const total = score_array[1];
+    //correct_state true means user answered correctly, false means user answered incorrectly, null means user has not answered yet
     const [correct_state, setCorrectState] = useState(null); //null, true, false 
+
+    useEffect(() => {
+        if (nextButtonPressed[0] == true && answered == true) {
+            setAnswered(false);
+            setCorrectState(null);
+        }
+    }, [nextButtonPressed, answered, setAnswered]);
 
     function handleClick() {
         //Do nothing if state is "answered"
@@ -45,28 +57,28 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
             return;
         }
 
-        setAnswered(true);
+        setAnswered(true); //since answered == false, set it to true to mark this question is answered
         //Check if answer is correct
         if (currentAnswer === name) {
             //Update global counter
-            setScore([score + 1, total + 1]);
+            setScore([score + 1, total + 1]); //TODO: score is broken currently
             console.log(`Correct! You chose: ${name} \n Your current score is: ${score} out of ${total}`);
             setCorrectState(true);
         }
         else if (currentAnswer != name) {
-            setScore([score, total + 1]);
+            setScore([score, total + 1]); //TODO: score is broken currently
             //Display correct answer
             console.log(`The correct answer was: ${currentAnswer}`);
             setCorrectState(false);
         }
     }
 
-    if (correct_state == true) {
+    if (correct_state == true && nextButtonPressed[0] == false) {
         return (
             <button className={`${name} option_box correct_button`} onClick={handleClick}>{name}</button>
         )
     }
-    else if (correct_state == false) {
+    else if (correct_state == false && nextButtonPressed[0] == false) {
         return (
             <button className={`${name} option_box incorrect_button`} onClick={handleClick}>{name}</button>
         )

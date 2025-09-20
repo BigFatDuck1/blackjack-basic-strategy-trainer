@@ -2,14 +2,15 @@ import { useState } from 'react'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
 import Random from './components/Random.jsx'
+import Next from './components/Next.jsx'
 import React from 'react'
 
 function App() {
 
   const [correct_answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
   const [score, setScore] = useState([0, 0]); // first number is score, second number is total questions answered
-  const [answered, setAnswered] = useState(false); 
-
+  const [answered, setAnswered] = useState(false); //false means user has not submitted an answer
+  const [nextButtonPressed, setNextButtonPressed] = useState(false); //false means user has not pressed next button
 
   if (correct_answer != "Hit") {
     //TODO: hardcoded answer for now, need component to check answer later
@@ -34,7 +35,12 @@ function App() {
         <div className="player_title title">You</div>
       </div>
 
-      <Buttons answer={correct_answer} score_array={score} setScore={setScore} answered={answered} setAnswered={setAnswered} />
+      <Buttons answer={correct_answer} score_array={score} setScore={setScore} answered={answered} setAnswered={setAnswered} nextButtonPressed={[nextButtonPressed, setNextButtonPressed]} />
+
+      <div className="next_button_box">
+        <Next toggle_answer={[answered, setAnswered]} nextButtonPressedFunc={setNextButtonPressed} />
+      </div>
+    
     </div>
     )
 }
