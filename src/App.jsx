@@ -6,10 +6,12 @@ import React from 'react'
 
 function App() {
 
-  const [answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
+  const [correct_answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
   const [score, setScore] = useState([0, 0]); // first number is score, second number is total questions answered
+  const [answered, setAnswered] = useState(false); 
 
-  if (answer != "Hit") {
+
+  if (correct_answer != "Hit") {
     //TODO: hardcoded answer for now, need component to check answer later
     setAnswer("Hit");
   }
@@ -32,7 +34,7 @@ function App() {
         <div className="player_title title">You</div>
       </div>
 
-      <Buttons answer={answer} score_array={score} setScore={setScore} />
+      <Buttons answer={correct_answer} score_array={score} setScore={setScore} answered={answered} setAnswered={setAnswered} />
     </div>
     )
 }

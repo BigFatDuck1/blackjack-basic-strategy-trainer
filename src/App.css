@@ -11,6 +11,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   justify-items: center;
+  padding-bottom: 1.5rem;
 }
 
 .title {
@@ -34,4 +35,11 @@
 
 .card {
   padding-left: 10px;
+}
+
+.correct_button {
+  background-color: green;
+}
+.incorrect_button {
+  background-color: red;
 }
