@@ -10,6 +10,7 @@ function Next({ toggle_answer, nextButtonPressedFunc }) {
             alert("Please select an answer");
         }
 
+        toggle_answer[1](false); //Changes state of answered to false
         nextButtonPressedFunc(true); //Changes state of nextButtonPressed to true
     }
 

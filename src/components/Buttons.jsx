@@ -35,13 +35,6 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
     //correct_state true means user answered correctly, false means user answered incorrectly, null means user has not answered yet
     const [correct_state, setCorrectState] = useState(null); //null, true, false
 
-    useEffect(() => {
-        if (nextButtonPressed[0] == true && answered == true) {
-            setAnswered(false);
-            setCorrectState(null);
-        }
-    }, [nextButtonPressed, answered, setAnswered]);
-
     function handleClick() {
         //Do nothing if state is "answered"
         if (answered == true) {
@@ -66,13 +59,13 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
 
     let correct_class = "";
 
-    if (correct_state == true && nextButtonPressed[0] == false) {
+    if (correct_state == true && answered == true) {
         correct_class = "correct_button";
     }
-    else if (correct_state == false && nextButtonPressed[0] == false) {
+    else if (correct_state == false && answered == true) {
         correct_class = "incorrect_button";
     }
-    else {
+    else if (answered == false) {
         correct_class = "";
     }
 
