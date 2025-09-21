@@ -3,36 +3,27 @@ import { useState, useEffect } from "react";
 
 function Buttons({ answer, score_array, setScore, answered, setAnswered, nextButtonPressed }) {
 
+    const button_names = [
+        "Hit",
+        "Stand",
+        "Split",
+        "Double"
+    ]
+
     return (
         <div className="options">
-            <Click 
-            name="Hit" 
-            currentAnswer={answer} 
-            score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered}
-            nextButtonPressed={nextButtonPressed} 
-            />
-
-            <Click name="Stand" 
-            currentAnswer={answer} 
-            score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered}
-            nextButtonPressed={nextButtonPressed} 
-            />
-
-            <Click name="Split" 
-            currentAnswer={answer} 
-            score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered}
-            nextButtonPressed={nextButtonPressed} 
-            />
-
-            <Click name="Double" 
-            currentAnswer={answer} 
-            score_array={score_array} setScore={setScore} 
-            answered={answered} setAnswered={setAnswered}
-            nextButtonPressed={nextButtonPressed} 
-            />
+            {button_names.map(name => (
+                <Click 
+                    name={name}
+                    key={name}
+                    currentAnswer={answer}
+                    score_array={score_array}
+                    setScore={setScore}
+                    answered={answered}
+                    setAnswered={setAnswered}
+                    nextButtonPressed={nextButtonPressed}
+                />
+            ))}
         </div>
     )
 }
@@ -42,7 +33,7 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
     const score = score_array[0];
     const total = score_array[1];
     //correct_state true means user answered correctly, false means user answered incorrectly, null means user has not answered yet
-    const [correct_state, setCorrectState] = useState(null); //null, true, false 
+    const [correct_state, setCorrectState] = useState(null); //null, true, false
 
     useEffect(() => {
         if (nextButtonPressed[0] == true && answered == true) {
@@ -73,19 +64,20 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
         }
     }
 
+    let correct_class = "";
+
     if (correct_state == true && nextButtonPressed[0] == false) {
-        return (
-            <button className={`${name} option_box correct_button`} onClick={handleClick}>{name}</button>
-        )
+        correct_class = "correct_button";
     }
     else if (correct_state == false && nextButtonPressed[0] == false) {
-        return (
-            <button className={`${name} option_box incorrect_button`} onClick={handleClick}>{name}</button>
-        )
+        correct_class = "incorrect_button";
     }
     else {
-        return <button className={`${name} option_box `} onClick={handleClick}>{name}</button>        
+        correct_class = "";
     }
+
+    return <button className={`${name} option_box ${correct_class} `} onClick={handleClick}>{name}</button>        
+
 }
 
 export default Buttons;

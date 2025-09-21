@@ -1,9 +1,10 @@
+import React from 'react'
 import { useState } from 'react'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
 import Random from './components/Random.jsx'
 import Next from './components/Next.jsx'
-import React from 'react'
+import AnswerText from './components/AnswerText.jsx'
 
 function App() {
 
@@ -35,7 +36,13 @@ function App() {
         <div className="player_title title">You</div>
       </div>
 
-      <Buttons answer={correct_answer} score_array={score} setScore={setScore} answered={answered} setAnswered={setAnswered} nextButtonPressed={[nextButtonPressed, setNextButtonPressed]} />
+      <Buttons 
+      answer={correct_answer} 
+      score_array={score} setScore={setScore} 
+      answered={answered} setAnswered={setAnswered} 
+      nextButtonPressed={[nextButtonPressed, setNextButtonPressed]} />
+
+      <AnswerText answered={answered} correct_answer={correct_answer} />
 
       <div className="next_button_box">
         <Next toggle_answer={[answered, setAnswered]} nextButtonPressedFunc={setNextButtonPressed} />
