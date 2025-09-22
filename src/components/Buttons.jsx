@@ -35,6 +35,10 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
     //correct_state true means user answered correctly, false means user answered incorrectly, null means user has not answered yet
     const [correct_state, setCorrectState] = useState(null); //null, true, false
 
+    if (nextButtonPressed[0] == true) {
+        setCorrectState(null); //Reset correct_state to null
+    }
+
     function handleClick() {
         //Do nothing if state is "answered"
         if (answered == true) {
