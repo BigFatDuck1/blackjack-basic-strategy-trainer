@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Buttons({ answer, score_array, setScore, answered, setAnswered, nextButtonPressed }) {
 
@@ -10,12 +10,15 @@ function Buttons({ answer, score_array, setScore, answered, setAnswered, nextBut
         "Double"
     ]
 
+    const total = score_array[1];
+
+
     return (
         <div className="options">
             {button_names.map(name => (
                 <Click 
                     name={name}
-                    key={name}
+                    key={`${name}_${total}`}
                     currentAnswer={answer}
                     score_array={score_array}
                     setScore={setScore}
@@ -28,16 +31,16 @@ function Buttons({ answer, score_array, setScore, answered, setAnswered, nextBut
     )
 }
 
-function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered, nextButtonPressed }) {
+function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered }) {
     
     const score = score_array[0];
     const total = score_array[1];
     //correct_state true means user answered correctly, false means user answered incorrectly, null means user has not answered yet
     const [correct_state, setCorrectState] = useState(null); //null, true, false
 
-    if (nextButtonPressed[0] == true) {
-        setCorrectState(null); //Reset correct_state to null
-    }
+    if (total != score_array[1]) { //Updates setCorrectState if total changes
+        setCorrectState(null);
+    } //https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
 
     function handleClick() {
         //Do nothing if state is "answered"
@@ -49,14 +52,14 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
         //Check if answer is correct
         if (currentAnswer === name) {
             //Update global counter
-            setScore([score + 1, total + 1]); //TODO: score is broken currently
-            console.log(`Correct! You chose: ${name} \n Your current score is: ${score} out of ${total}`);
+            setScore([score + 1, total]); //TODO: score is broken currently
+            console.log(`Correct! You chose: ${name} \n Your current score is: ${score_array}`);
             setCorrectState(true);
         }
         else if (currentAnswer != name) {
-            setScore([score, total + 1]); //TODO: score is broken currently
+            setScore([score, total]); //TODO: score is broken currently
             //Display correct answer
-            console.log(`The correct answer was: ${currentAnswer}`);
+            console.log(`The correct answer was: ${currentAnswer} \n Your current score is: ${score} out of ${total}`);
             setCorrectState(false);
         }
     }

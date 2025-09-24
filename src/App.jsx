@@ -9,7 +9,7 @@ import AnswerText from './components/AnswerText.jsx'
 function App() {
 
   const [correct_answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
-  const [score, setScore] = useState([0, 0]); // first number is score, second number is total questions answered
+  const [score, setScore] = useState([0, 1]); // first number is score, second number is total questions answered
   const [answered, setAnswered] = useState(false); //false means user has not submitted an answer
   const [nextButtonPressed, setNextButtonPressed] = useState(false); //false means user has not pressed next button
 
@@ -44,8 +44,12 @@ function App() {
 
       <AnswerText answered={answered} correct_answer={correct_answer} />
 
+      <div>
+        <p className="score_text">Score: {score[0]} / {score[1]}</p>
+      </div>
+
       <div className="next_button_box">
-        <Next toggle_answer={[answered, setAnswered]} nextButtonPressedFunc={setNextButtonPressed} />
+        <Next toggle_answer={[answered, setAnswered]} nextButtonPressedFunc={setNextButtonPressed} score={score} setScore={setScore} />
       </div>
     
     </div>
