@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Buttons({ answer, score_array, setScore, answered, setAnswered, nextButtonPressed }) {
+function Buttons({ answer, score_array, setScore, answered, setAnswered }) {
 
     const button_names = [
         "Hit",
@@ -11,6 +11,7 @@ function Buttons({ answer, score_array, setScore, answered, setAnswered, nextBut
     ]
 
     const total = score_array[1];
+    //Changing the key prop forces remount of the component, resetting its internal state
 
 
     return (
@@ -24,7 +25,6 @@ function Buttons({ answer, score_array, setScore, answered, setAnswered, nextBut
                     setScore={setScore}
                     answered={answered}
                     setAnswered={setAnswered}
-                    nextButtonPressed={nextButtonPressed}
                 />
             ))}
         </div>
@@ -38,10 +38,6 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
     //correct_state true means user answered correctly, false means user answered incorrectly, null means user has not answered yet
     const [correct_state, setCorrectState] = useState(null); //null, true, false
 
-    if (total != score_array[1]) { //Updates setCorrectState if total changes
-        setCorrectState(null);
-    } //https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
-
     function handleClick() {
         //Do nothing if state is "answered"
         if (answered == true) {
@@ -52,14 +48,12 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
         //Check if answer is correct
         if (currentAnswer === name) {
             //Update global counter
-            setScore([score + 1, total]); //TODO: score is broken currently
-            console.log(`Correct! You chose: ${name} \n Your current score is: ${score_array}`);
+            setScore([score + 1, total]); 
             setCorrectState(true);
         }
         else if (currentAnswer != name) {
-            setScore([score, total]); //TODO: score is broken currently
+            setScore([score, total]);
             //Display correct answer
-            console.log(`The correct answer was: ${currentAnswer} \n Your current score is: ${score} out of ${total}`);
             setCorrectState(false);
         }
     }

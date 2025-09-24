@@ -59,3 +59,8 @@
   padding-top: 0.5rem;
 
 }
+
+.score_box {
+  display: flex;
+  justify-content: flex-end;
+}
