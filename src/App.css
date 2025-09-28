@@ -56,6 +56,8 @@
   display: grid;
   min-height: 1.2rem;
   max-height: 1.2rem;
+  min-width: 37ch;
+  max-width: 37ch;
   padding-top: 0.5rem;
 
 }

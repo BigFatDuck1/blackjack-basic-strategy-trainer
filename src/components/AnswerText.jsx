@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import { useRef, useState } from "react";
 
-function AnswerText({ answered, correct_answer, score }) {
+function AnswerText({ answered, correct_answer, correct_state }) {
 
 
     if (answered == false) {
@@ -12,7 +12,7 @@ function AnswerText({ answered, correct_answer, score }) {
     else if (answered == true) {
         return (
             <div className="answer_text">
-                {1 ? "Correct!" : "Incorrect."} The correct answer is: {correct_answer}
+                {correct_state ? "Correct!" : "Incorrect."} The correct answer is: {correct_answer}
             </div>
         )
     }

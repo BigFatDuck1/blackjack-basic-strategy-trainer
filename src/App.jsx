@@ -11,6 +11,7 @@ function App() {
   const [correct_answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
   const [score, setScore] = useState([0, 1]); // first number is score, second number is total questions answered
   const [answered, setAnswered] = useState(false); //false means user has not submitted an answer
+  const [correct_state, setCorrect_state] = useState(false); //true means user answered correctly
 
   if (correct_answer != "Hit") {
     //TODO: hardcoded answer for now, need component to check answer later
@@ -38,9 +39,9 @@ function App() {
       <Buttons 
       answer={correct_answer} 
       score_array={score} setScore={setScore} 
-      answered={answered} setAnswered={setAnswered} />
+      answered={answered} setAnswered={setAnswered} correct_state={correct_state} setCorrect_state={setCorrect_state} />
 
-      <AnswerText answered={answered} correct_answer={correct_answer} score={score} />
+      <AnswerText answered={answered} correct_answer={correct_answer} correct_state={correct_state} />
 
       <div className="score_box">
         <p className="score_text">Score: {score[0]} / {score[1]}</p>

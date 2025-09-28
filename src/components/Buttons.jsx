@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Buttons({ answer, score_array, setScore, answered, setAnswered }) {
+function Buttons({ answer, score_array, setScore, answered, setAnswered, correct_state, setCorrect_state }) {
 
     const button_names = [
         "Hit",
@@ -25,13 +25,14 @@ function Buttons({ answer, score_array, setScore, answered, setAnswered }) {
                     setScore={setScore}
                     answered={answered}
                     setAnswered={setAnswered}
+                    global_correct_state={correct_state} setGlobalCorrect_state={setCorrect_state}
                 />
             ))}
         </div>
     )
 }
 
-function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered }) {
+function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered, global_correct_state, setGlobalCorrect_state }) {
     
     const score = score_array[0];
     const total = score_array[1];
@@ -50,11 +51,13 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
             //Update global counter
             setScore([score + 1, total]); 
             setCorrectState(true);
+            setGlobalCorrect_state(true);
         }
         else if (currentAnswer != name) {
             setScore([score, total]);
             //Display correct answer
             setCorrectState(false);
+            setGlobalCorrect_state(false);
         }
     }
 
