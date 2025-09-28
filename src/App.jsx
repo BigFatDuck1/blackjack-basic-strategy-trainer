@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 import { useState } from 'react'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
@@ -13,26 +13,27 @@ function App() {
   const [answered, setAnswered] = useState(false); //false means user has not submitted an answer
   const [correct_state, setCorrect_state] = useState(false); //true means user answered correctly
 
+  
+  //Generate new card set and answer
+  const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
+  
   if (correct_answer != "Hit") {
     //TODO: hardcoded answer for now, need component to check answer later
     setAnswer("Hit");
   }
-
-  //TODO: integrate this into a function that generates a new card
-  Random(); // Generate new dealer/player pair
-
+  
   return (
     <div>
 
       <div className="dealer_block">
-        <div className="hole_card card">Card 1 (Hole)</div>
-        <div className="dealer_card card">Card 2 (Up)</div>
+        <div className="hole_card card">X</div>
+        <div className="dealer_card card">{random.dealer_card_string}</div>
         <div className="dealer_title title">Dealer</div>
       </div>
 
       <div className="player_block">
-        <div className="player_card1 card">Card 1</div>
-        <div className="player_card2 card">Card 2</div>
+        <div className="player_card1 card">{random.player_card1_string}</div>
+        <div className="player_card2 card">{random.player_card2_string}</div>
         <div className="player_title title">You</div>
       </div>
 
@@ -49,7 +50,7 @@ function App() {
       </div>
 
       <div className="next_button_box">
-        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} />
+        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} />
       </div>
     
     </div>
