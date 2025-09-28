@@ -9,7 +9,9 @@ function checkBlackjack(card1, card2) {
     if ((card1 === "A" && equivalent_to_10.includes(card2)) || (card2 === "A" && equivalent_to_10.includes(card1))) {
         return true;
     }
-    return false;
+    else {
+        return false;
+    }
 }
 
 function generatePlayerTotal(card1, card2) {

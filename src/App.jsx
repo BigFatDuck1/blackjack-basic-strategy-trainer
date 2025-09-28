@@ -45,6 +45,7 @@ function App() {
 
       <div className="score_box">
         <p className="score_text">Score: {score[0]} / {score[1]}</p>
+        <p className="score_text"> {(score[0] / score[1] * 100).toFixed(2)}%</p>
       </div>
 
       <div className="next_button_box">
