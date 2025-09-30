@@ -1,7 +1,8 @@
+import AnswerCheck from "./AnswerCheck";
 
 const random_index = (array) => Math.floor(Math.random() * array.length);
 
-const available_cards = [2,3,4,5,6,7,8,9,10,"A"];
+const available_cards = [2,3,4,5,6,7,8,9,10, "J", "Q", "K", "A"];
 const equivalent_to_10 = [10, "J", "Q", "K"];
 const suites = ["♥", "♦", "♠", "♣"];
 
@@ -34,9 +35,9 @@ function generatePlayerTotal(card1, card2) {
 }
 
 function returnCards() { 
-    const card1 = available_cards[random_index(available_cards)];
-    const card2 = available_cards[random_index(available_cards)];
-    const card3 = available_cards[random_index(available_cards)];
+    const card1 = available_cards[random_index(available_cards)]; //Player
+    const card2 = available_cards[random_index(available_cards)]; //Player
+    const card3 = available_cards[random_index(available_cards)]; //Dealer
     const card1suit = suites[random_index(suites)];
     const card2suit = suites[random_index(suites)];
     const card3suit = suites[random_index(suites)];
