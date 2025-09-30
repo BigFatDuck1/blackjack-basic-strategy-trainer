@@ -1,5 +1,4 @@
-import React, { use } from "react";
-import { useRef, useState } from "react";
+import React from "react";
 
 function AnswerText({ answered, correct_answer, correct_state }) {
 

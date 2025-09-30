@@ -32,7 +32,7 @@ function Buttons({ answer, score_array, setScore, answered, setAnswered, correct
     )
 }
 
-function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered, global_correct_state, setGlobalCorrect_state }) {
+function Click({ currentAnswer, name, score_array, setScore, answered, setAnswered, setGlobalCorrect_state }) {
     
     const score = score_array[0];
     const total = score_array[1];

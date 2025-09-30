@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
