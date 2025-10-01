@@ -44,10 +44,24 @@
 }
 
 .correct_button {
-  background-color: green;
+  background-color: #9ece6a; /* Tokyo Night green for correct */
+  color: #1a1b26; /* Dark text for contrast */
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+.correct_button:hover {
+  background-color: #71f7de; /* Lighter cyan for hover */
 }
 .incorrect_button {
-  background-color: red;
+  background-color: #f7768e; /* Tokyo Night pink/red for incorrect */
+  color: #1a1b26; /* Dark text for contrast */
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+.incorrect_button:hover {
+  background-color: #ed5029; /* Softer orange/pink for hover */
 }
 
 .next_button_box {
