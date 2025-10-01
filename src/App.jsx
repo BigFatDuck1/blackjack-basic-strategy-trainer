@@ -16,12 +16,9 @@ function App() {
   
   //Generate new card set and answer
   const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
-  
-  if (correct_answer != "Hit") {
-    //TODO: hardcoded answer for now, need component to check answer later
-    setAnswer("Hit");
-  }
-  
+  if (correct_answer != random.answer) {
+    setAnswer(random.answer);
+  }  
   return (
     <div>
 
@@ -50,7 +47,7 @@ function App() {
       </div>
 
       <div className="next_button_box">
-        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} />
+        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} setAnswer={setAnswer} />
       </div>
     
     </div>

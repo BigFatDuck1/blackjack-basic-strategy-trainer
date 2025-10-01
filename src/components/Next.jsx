@@ -1,7 +1,7 @@
 import React from "react";
 import Random from "./Random.jsx";
 
-function Next({ toggle_answer, score, setScore, setRandom }) {
+function Next({ toggle_answer, score, setScore, setRandom, setAnswer }) {
 
     const answered = toggle_answer[0]; //true means user has submmited answer, false means user hasn't submitted an answer
     const setAnswered = toggle_answer[1];
@@ -15,7 +15,9 @@ function Next({ toggle_answer, score, setScore, setRandom }) {
 
         setAnswered(false); //Changes state of answered to false
         setScore([score[0], score[1] + 1]);
-        setRandom(Random()); // Generate new dealer/player pair
+        const newPair = Random();
+        setRandom(newPair); // Generate new dealer/player pair
+        setAnswer(newPair.answer); // Set correct answer to the correct move for the new dealer/player pair
 
     }
 

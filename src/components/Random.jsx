@@ -57,6 +57,11 @@ function returnCards() {
 
         }
 
+        obj.answer = AnswerCheck(card3, card1, card2);
+        if (obj.answer == "NA") {
+            return returnCards();
+        }
+
         return obj;
     };
 }

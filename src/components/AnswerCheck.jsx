@@ -2,6 +2,16 @@ import React from "react";
 
 function AnswerCheck(d1, p1, p2) {
 
+    //All aces are soft and count as 11 in two card hand
+    if (p1 == "A" && p2 == "A") {
+        if (p1 == "A") {
+            p1 = 11;
+        }
+        if (p2 == "A") {
+            p2 = 11;
+        }
+    }
+
     //All totals 17 or higher = stand
     if (p1 + p2 >= 17) {
         return "Stand"; 
@@ -17,9 +27,20 @@ function AnswerCheck(d1, p1, p2) {
         }
     } 
 
+    //Stand on hard totals of 13, 14, 15, 16 vs. dealer upcard of 2, 3, 4, 5, 6; otherwise hit.
+    if ([2,3,4,5,6].includes(d1) && [13,14,15,16].includes(p1 + p2)) {
+        return "Stand";
+    }
+    else if ([2,3,4,5,6].includes(d1) && (p1 + p2 < 13)) {
+        return "Hit";
+    }
 
+    //Stand on hard total of 12 vs. dealer upcard of 4, 5, 6; otherwise hit.
+    if ([4,5,6].includes(d1) && (p1 + p2 == 12)) {
+        return "Stand";
+    }
 
-    return "Answer not determined"; //default
+    return "NA"; //default
 }
 
 export default AnswerCheck;
