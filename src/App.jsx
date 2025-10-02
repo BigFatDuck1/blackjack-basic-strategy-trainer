@@ -24,13 +24,13 @@ function App() {
 
       <div className="dealer_block">
         <div className="hole_card card">X</div>
-        <div className="dealer_card card">{random.dealer_card_string}</div>
+        <div className={`dealer_card card ${(random.dealer_card_string).includes("♥") || (random.dealer_card_string).includes("♦") ? "heart_or_diamond" : "club_or_spade"}`}>{random.dealer_card_string}</div>
         <div className="dealer_title title">Dealer</div>
       </div>
 
       <div className="player_block">
-        <div className="player_card1 card">{random.player_card1_string}</div>
-        <div className="player_card2 card">{random.player_card2_string}</div>
+        <div className={`player_card1 card ${(random.player_card1_string).includes("♥") || (random.player_card1_string).includes("♦") ? "heart_or_diamond" : "club_or_spade"}`}>{random.player_card1_string}</div>
+        <div className={`player_card2 card ${(random.player_card2_string).includes("♥") || (random.player_card2_string).includes("♦") ? "heart_or_diamond" : "club_or_spade"}`}>{random.player_card2_string}</div>
         <div className="player_title title">You</div>
       </div>
 
