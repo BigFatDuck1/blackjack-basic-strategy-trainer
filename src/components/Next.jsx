@@ -33,9 +33,13 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
         //     <button className="next_button" onClick={reset} data-pr-tooltip="Please select an answer" >Next</button>
         // </div>
         <div className="next">
+            {answered ? <Button label="Next" className="next_button" onClick={reset} 
+            raised /> : 
             <Button label="Next" className="next_button" onClick={reset} 
-            tooltip={answered ? "" : "Please select an answer"} 
-            tooltipOptions={{ position: 'bottom' }} />
+            //tooltip={answered ? "" : "Please select an answer"} 
+            //tooltipOptions={{ position: 'bottom' }}
+            disabled
+            />}
         </div>
     )
 }
