@@ -1,6 +1,6 @@
 import React from "react";
 import Random from "./Random.jsx";
-import { Tooltip } from 'primereact/tooltip';
+import { PrimeReactProvider } from "primereact/api";
 import { Button } from 'primereact/button';
 
 
@@ -10,6 +10,10 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
 
     const answered = toggle_answer[0]; //true means user has submmited answer, false means user hasn't submitted an answer
     const setAnswered = toggle_answer[1];
+
+    const value = {
+        ripple: true,
+    };
 
     const reset = () => {
         if (answered == false) {
@@ -32,8 +36,9 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
         // <div className="next">
         //     <button className="next_button" onClick={reset} data-pr-tooltip="Please select an answer" >Next</button>
         // </div>
-        <div className="next">
-            {answered ? <Button label="Next" className="next_button" onClick={reset} 
+        <PrimeReactProvider value={value} >
+            <div className="next">
+            {answered ? <Button label="Next" className="next_button p-ripple" onClick={reset} 
             raised /> : 
             <Button label="Next" className="next_button" onClick={reset} 
             //tooltip={answered ? "" : "Please select an answer"} 
@@ -41,6 +46,7 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
             disabled
             />}
         </div>
+        </PrimeReactProvider>
     )
 }
 
