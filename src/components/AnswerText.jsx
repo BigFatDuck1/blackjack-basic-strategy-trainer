@@ -11,7 +11,7 @@ function AnswerText({ answered, correct_answer, correct_state }) {
     else if (answered == true) {
         return (
             <div className="answer_text">
-                {correct_state ? "Correct!" : "Incorrect."} The correct answer is: {correct_answer}
+                {correct_state ? `${correct_answer} is correct!` : `Incorrect. Answer: ${correct_answer}`}
             </div>
         )
     }

@@ -1,38 +1,54 @@
 import AnswerCheck from "./AnswerCheck";
 
+//Basically easy version where only Hit/Stand is tested
+
 const random_index = (array) => Math.floor(Math.random() * array.length);
 
-const available_cards = [2,3,4,5,6,7,8,9,10, "J", "Q", "K", "A"];
+const equivalent_to_10 = [10, "J", "Q", "K"];
 const suites = ["♥", "♦", "♠", "♣"];
 
-function returnCards() { 
-    const card1 = available_cards[random_index(available_cards)]; //Player
-    const card2 = available_cards[random_index(available_cards)]; //Player
-    const card3 = available_cards[random_index(available_cards)]; //Dealer
+const all_array = [
+    [9, 6, 8, "H"],
+]
+
+function parseArray (big_array) {
+
+    let obj = {};
+
+    const array = big_array[random_index(big_array)];
+
     const card1suit = suites[random_index(suites)];
     const card2suit = suites[random_index(suites)];
     const card3suit = suites[random_index(suites)];
 
-    if (checkBlackjack(card1, card2) == true) {
-        console.log("Blackjack, redraw");
-        return returnCards();
+    let card1 = array[0];
+    let card2 = array[1];
+    let card3 = array[2];
+
+    const tenRandomizer = (card) => {
+        if (card == 10) {
+            return equivalent_to_10[random_index(equivalent_to_10)];
+        }
+        else return card;
     }
-    else {
-        const obj = {
-            player_card1_string: `${card1suit} ${card1}`,
-            player_card2_string: `${card2suit} ${card2}`,
-            dealer_card_string: `${card3suit} ${card3}`,
-            //answer = "Hit" / "Stand" / "Double" / "Split"
 
-        }
+    card1 = tenRandomizer(card1); 
+    card2 = tenRandomizer(card2);
+    card3 = tenRandomizer(card3);
 
-        obj.answer = AnswerCheck(card3, card1, card2);
-        if (obj.answer == "NA") {
-            return returnCards();
-        }
+    return obj = {
+        player_card1_string: `${card1suit} ${card1}`,
+        player_card2_string: `${card2suit} ${card2}`,
+        dealer_card_string: `${card3suit} ${card3}`,
+        answer: `${array[3] == "H" ? "Hit" : "Stand"}`,
+    }
+}
 
-        return obj;
-    };
+
+function returnCards() { 
+    const obj = parseArray(all_array);
+    console.log(obj);
+    return obj;
 }
 
 export default returnCards;

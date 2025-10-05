@@ -2,13 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 import './App.css'
 import Buttons from './components/Buttons.jsx'
+//Different set of questions depending on "difficulty" state
 import Random from './components/Random.jsx'
+import HitStand from './components/HitStand.jsx'
+
 import Next from './components/Next.jsx'
 import AnswerText from './components/AnswerText.jsx'
 import 'primeicons/primeicons.css';
 
 
 function App() {
+
+  const [difficulty, setDifficulty] = useState("HitStand"); //State to hold which randomizer to use
 
   const [correct_answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
   const [score, setScore] = useState([0, 1]); // first number is score, second number is total questions answered
@@ -29,7 +34,9 @@ function App() {
 
   //Generate new card set and answer
   //change the function inside useState depending on which randomizer you want to use
-  const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
+  const [randomizer, setRandomizer] = useState("HitStand"); //State to hold which randomizer function to use
+  const [random, setRandom] = useState(HitStand()); //State to hold dealer/player pair
+  console.log(random.answer);
   if (correct_answer != random.answer) {
     setAnswer(random.answer);
   }
@@ -65,7 +72,7 @@ function App() {
       </div>
 
       <div className="next_button_box">
-        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} setAnswer={setAnswer} setCorrect_state={setCorrect_state} />
+        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} setAnswer={setAnswer} setCorrect_state={setCorrect_state} randomizer={randomizer} />
       </div>
     
     </div>

@@ -1,12 +1,13 @@
 import React from "react";
 import Random from "./Random.jsx";
+import HitStand from "./HitStand.jsx";
 import { PrimeReactProvider } from "primereact/api";
 import { Button } from 'primereact/button';
 
 
 
 
-function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect_state }) {
+function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect_state, randomizer }) {
 
     const answered = toggle_answer[0]; //true means user has submmited answer, false means user hasn't submitted an answer
     const setAnswered = toggle_answer[1];
@@ -24,7 +25,13 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
 
         setAnswered(false); //Changes state of answered to false
         setScore([score[0], score[1] + 1]);
-        const newPair = Random();
+        let newPair = HitStand(); //TODO: dynamically change this function based on difficulty/randomizer state
+        // if (randomizer == "HitStand") {
+        //     newPair = HitStand();
+        // }
+        // else if (randomizer == "Random") {
+        //     newPair = Random();
+        // }
         setRandom(newPair); // Generate new dealer/player pair
         setAnswer(newPair.answer); // Set correct answer to the correct move for the new dealer/player pair
         setCorrect_state(null); //Reset correct_state to null for new question
