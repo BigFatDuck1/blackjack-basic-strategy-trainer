@@ -1,5 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { Button } from 'primereact/button';
+import 'primeicons/primeicons.css';
+
+
 
 function Buttons({ answer, score_array, setScore, answered, setAnswered, correct_state, setCorrect_state }) {
 
@@ -73,7 +77,24 @@ function Click({ currentAnswer, name, score_array, setScore, answered, setAnswer
         correct_class = "";
     }
 
-    return <button className={`${name} option_box ${correct_class} `} onClick={handleClick}>{name}</button>        
+    const iconName = (name) => {
+        if (name == "Hit") {
+            return "pi pi-hammer";
+        }
+        else if (name == "Stand") {
+            return "pi pi-stop-circle";
+        }
+        else if (name == "Split") {
+            return "pi pi-arrows-h";
+        }
+        else if (name == "Double") {
+            return "pi pi-copy"; 
+        }
+    }
+
+    return (
+    <Button className={`${name} option_box ${correct_class} `} icon={iconName(name)} iconPos="left" onClick={handleClick} label={name} />
+)        
 
 }
 

@@ -5,26 +5,43 @@ import Buttons from './components/Buttons.jsx'
 import Random from './components/Random.jsx'
 import Next from './components/Next.jsx'
 import AnswerText from './components/AnswerText.jsx'
+import 'primeicons/primeicons.css';
+
 
 function App() {
 
   const [correct_answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
   const [score, setScore] = useState([0, 1]); // first number is score, second number is total questions answered
   const [answered, setAnswered] = useState(false); //false means user has not submitted an answer
-  const [correct_state, setCorrect_state] = useState(false); //true means user answered correctly
+  const [correct_state, setCorrect_state] = useState(null); //true means user answered correctly, global state
 
-  
+  const renderHoleCard = () => {
+    if (correct_state == null) {
+      return (<i className="pi pi-eye-slash"></i>);
+    }
+    else if (correct_state == true) {
+      return (<i className="pi pi-check"></i>);
+    }
+    else if (correct_state == false) {
+      return (<i className="pi pi-times"></i>);
+    }
+  }
+
   //Generate new card set and answer
   const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
   if (correct_answer != random.answer) {
     setAnswer(random.answer);
-  }  
+  }
   return (
     <div>
 
       <div className="dealer_block">
-        <div className="hole_card card">X</div>
+
+        <div className="hole_card card">
+          {renderHoleCard()}
+        </div>
         <div className={`dealer_card card ${(random.dealer_card_string).includes("♥") || (random.dealer_card_string).includes("♦") ? "heart_or_diamond" : "club_or_spade"}`}>{random.dealer_card_string}</div>
+
         <div className="dealer_title title">Dealer</div>
       </div>
 
@@ -47,7 +64,7 @@ function App() {
       </div>
 
       <div className="next_button_box">
-        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} setAnswer={setAnswer} />
+        <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} setAnswer={setAnswer} setCorrect_state={setCorrect_state} />
       </div>
     
     </div>
