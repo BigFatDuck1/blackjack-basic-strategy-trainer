@@ -28,6 +28,7 @@ function App() {
   }
 
   //Generate new card set and answer
+  //change the function inside useState depending on which randomizer you want to use
   const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
   if (correct_answer != random.answer) {
     setAnswer(random.answer);
