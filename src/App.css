@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Caveat:wght@400..700&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 #root {
   max-width: 1280px;
@@ -11,6 +13,28 @@
   font-style: normal;
 }
 
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 20%;
+}
+.logo_box {
+  color: rgb(255, 255, 185);
+}
+.logo {
+  font-size: 2rem;
+  font-family: 'Bungee';
+}
+.logo_caption {
+  font-size: 0.5rem;
+  /* font-family: "Caveat"; */
+  padding-bottom: 0.5rem;
+}
+.dropdown {
+  font-size: 0.7rem;
+}
 
 .dealer_block, .player_block {
   display: grid;

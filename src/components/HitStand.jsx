@@ -47,7 +47,6 @@ function parseArray (big_array) {
 
 function returnCards() { 
     const obj = parseArray(all_array);
-    console.log(obj);
     return obj;
 }
 

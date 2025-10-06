@@ -9,6 +9,8 @@ import HitStand from './components/HitStand.jsx'
 import Next from './components/Next.jsx'
 import AnswerText from './components/AnswerText.jsx'
 import 'primeicons/primeicons.css';
+import { Dropdown } from 'primereact/dropdown';
+
 
 
 function App() {
@@ -35,13 +37,37 @@ function App() {
   //Generate new card set and answer
   //change the function inside useState depending on which randomizer you want to use
   const [randomizer, setRandomizer] = useState("HitStand"); //State to hold which randomizer function to use
-  const [random, setRandom] = useState(HitStand()); //State to hold dealer/player pair
-  console.log(random.answer);
+  const randomizer_options = [
+    { name: "Hit / Stand only"},
+    { name: "Any card combination (Random)"},
+  ]
+  const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
   if (correct_answer != random.answer) {
     setAnswer(random.answer);
   }
   return (
     <div>
+
+      <div className='header'>
+        <div className='logo_box'>
+          <div className="logo">BST</div>
+          <div className="logo_caption">Basic Strategy Trainer</div>
+        </div>
+
+          <div className="difficulty_box">
+            <Dropdown value={randomizer} onChange={(e) => setRandomizer(() => {
+              console.log(e.value); //TODO: insert function that changes randomizer here
+              if (e.value == "Hit / Stand only") {
+                setDifficulty(HitStand());
+              }
+              else {
+                setDifficulty(Random());
+              }
+              return e.value;
+            })} options={randomizer_options} optionLabel="name" 
+              placeholder="Select a card set" className="w-full md:w-14rem dropdown" />
+        </div>
+      </div>
 
       <div className="dealer_block">
 
