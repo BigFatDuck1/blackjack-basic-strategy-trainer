@@ -5,7 +5,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  margin-top: -5%;
+  margin-top: -2%;
   padding: 0;
   text-align: center;
   font-family: "Merriweather Sans", sans-serif;
@@ -172,4 +172,27 @@
 }
 .score_text {
   margin: 0;
+}
+
+.score_top_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.reset_score_button {
+  width: 0rem;
+  background-color: transparent;
+  transition: transform 0.5s ease;
+  border-radius: 100%;
+  outline: none;
+}
+.reset_score_button:focus {
+  outline: none;
+}
+.reset_score_button:hover {
+  transform: rotate(-30deg);
+  outline: none;
 }

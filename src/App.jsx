@@ -10,7 +10,7 @@ import Next from './components/Next.jsx'
 import AnswerText from './components/AnswerText.jsx'
 import 'primeicons/primeicons.css';
 import { Dropdown } from 'primereact/dropdown';
-
+import { Button } from 'primereact/button';
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const [score, setScore] = useState([0, 1]); // first number is score, second number is total questions answered
   const [answered, setAnswered] = useState(false); //false means user has not submitted an answer
   const [correct_state, setCorrect_state] = useState(null); //true means user answered correctly, global state
-
+  
   const renderHoleCard = () => {
     if (correct_state == null) {
       return (<i className="pi pi-eye-slash"></i>);
@@ -95,7 +95,10 @@ function App() {
       <AnswerText answered={answered} correct_answer={correct_answer} correct_state={correct_state} />
 
       <div className="score_box">
-        <p className="score_text">Score: {score[0]} / {score[1]}</p>
+        <div className="score_top_row">
+          <p className="score_text">Score: {score[0]} / {score[1]}</p>
+          <Button icon="pi pi-replay" className="reset_score_button" ripple aria-label="Reset" onClick={() => setScore([0, 1])} />
+        </div>
         <p className="score_text"> {(score[0] / score[1] * 100).toFixed(2)}%</p>
       </div>
 
