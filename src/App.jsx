@@ -41,7 +41,7 @@ function App() {
   ]
 
   //Default randomizer function is Random()
-  const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
+  const [random, setRandom] = useState(HitStand()); //State to hold dealer/player pair
 
   if (correct_answer != random.answer) {
     setAnswer(random.answer);
