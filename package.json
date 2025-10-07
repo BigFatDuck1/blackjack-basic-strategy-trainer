@@ -1,5 +1,6 @@
 {
   "name": "blackjack-basic-strategy",
+  "homepage": "https://bigfatduck1.github.io/blackjack-basic-strategy-trainer/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,9 +8,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "github-pages": "^3.0.2",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.7",
     "react": "^19.0.0",
