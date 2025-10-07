@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/blackjack-basic-strategy-trainer/sw.js', { scope: '/blackjack-basic-strategy-trainer/' })})}
