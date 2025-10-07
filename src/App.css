@@ -5,6 +5,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
+  margin-top: -5%;
   padding: 0;
   text-align: center;
   font-family: "Merriweather Sans", sans-serif;
@@ -21,15 +22,31 @@
   padding-bottom: 20%;
 }
 .logo_box {
-  color: rgb(255, 250, 106); 
+  color: #ffcc00; 
   opacity: 90%;
 }
 .logo {
   font-size: 2.3rem;
   font-family: 'Bungee';
-  animation: text-halo 3s infinite alternate ease-in-out;
+  background: linear-gradient(-45deg, #ffcc00 0%, #ffffff 100%);
+  background-clip: text;
+  background-size: 200% 100%;
+  color: transparent;
+  /* animation: text-animation 3s infinite alternate ease-in-out; */
+  animation: shimmer 10s linear infinite;
 }
-@keyframes text-halo {
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  20% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+/* @keyframes text-animation {
   0% {
     text-shadow: #ffcc00 1px 1px 1px;
     opacity: 70%
@@ -37,12 +54,13 @@
   100% {
     text-shadow: #ffcc00 1px 1px 5px;;
     opacity: 100%;
-  }
-}
+  } 
+} */
 .logo_caption {
-  font-size: 0.5rem;
-  /* font-family: "Caveat"; */
+  font-size: 0.8rem;
+  font-family: "Caveat";
   padding-bottom: 0.5rem;
+  margin-top: -5%;
 }
 .dropdown {
   font-size: 0.85rem;
