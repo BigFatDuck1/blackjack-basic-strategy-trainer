@@ -196,3 +196,27 @@
   transform: rotate(-30deg);
   outline: none;
 }
+
+#hint_dialog {
+  text-align: center;
+  background-color: #1a1b26;
+  border-radius: 20px;
+  padding: 0.2rem;
+}
+#hint_dialog p {
+  text-align: left;
+}
+#hint_dialog_content {
+  padding-left: 3%;
+}
+#hint_dialog_header {
+  font-style: italic;
+  font-weight: bold;
+}
+.p-dialog-header-icon {
+  background-color: transparent;
+  transition: transform 0.5s ease;
+}
+.p-dialog-header-icon:hover {
+  transform: scale(1.2);
+}

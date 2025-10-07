@@ -11,6 +11,7 @@ import AnswerText from './components/AnswerText.jsx'
 import 'primeicons/primeicons.css';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog'
 
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
   if (correct_answer != random.answer) {
     setAnswer(random.answer);
   }
+
+  //Hint when pressing on dealer hole card
+  const [hint, showHint] = useState(false);
   
   return (
     <div>
@@ -73,7 +77,7 @@ function App() {
 
       <div className="dealer_block">
 
-        <div className="hole_card card">
+        <div className="hole_card card" onClick={() => showHint(true)} >
           {renderHoleCard()} 
         </div>
         <div className={`dealer_card card ${(random.dealer_card_string).includes("♥") || (random.dealer_card_string).includes("♦") ? "heart_or_diamond" : "club_or_spade"}`}>{random.dealer_card_string}</div>
@@ -105,6 +109,16 @@ function App() {
       <div className="next_button_box">
         <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} setAnswer={setAnswer} setCorrect_state={setCorrect_state} randomizer={randomizer} />
       </div>
+
+      {/* Hint dialog; TODO: conditional render based on card set chosen */}
+      <Dialog id="hint_dialog" header="Hit/Stand decisions on Hard-total hands" visible={hint} style={{ width: '50vw' }} onHide={() => {if (!hint) return; showHint(false); }}>
+                <p className="m-0">
+                * Stand on all hard totals of 17 and higher.<br />
+                * When the dealer is showing an upcard of 7, 8, 9, T, A, hit all hands until your cards total 17 or higher.<br />
+                * Stand on hard totals of 13, 14, 15, 16 vs. dealer upcard of 2, 3, 4, 5, 6; otherwise hit.<br />
+                * Stand on hard total of 12 vs. dealer upcard of 4, 5, 6; otherwise hit.<br />
+                </p>
+      </Dialog>
     
     </div>
     )
