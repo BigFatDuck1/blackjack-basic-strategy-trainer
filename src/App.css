@@ -21,11 +21,23 @@
   padding-bottom: 20%;
 }
 .logo_box {
-  color: rgb(255, 255, 185);
+  color: rgb(255, 250, 106); 
+  opacity: 90%;
 }
 .logo {
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-family: 'Bungee';
+  animation: text-halo 3s infinite alternate ease-in-out;
+}
+@keyframes text-halo {
+  0% {
+    text-shadow: #ffcc00 1px 1px 1px;
+    opacity: 70%
+  }
+  100% {
+    text-shadow: #ffcc00 1px 1px 5px;;
+    opacity: 100%;
+  }
 }
 .logo_caption {
   font-size: 0.5rem;
@@ -33,7 +45,13 @@
   padding-bottom: 0.5rem;
 }
 .dropdown {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
+}
+.p-dropdown-items {
+  font-size: 0.85rem;
+}
+.p-placeholder {
+  padding-right: 0.3rem;
 }
 
 .dealer_block, .player_block {

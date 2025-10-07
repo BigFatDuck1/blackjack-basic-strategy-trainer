@@ -15,8 +15,6 @@ import { Dropdown } from 'primereact/dropdown';
 
 function App() {
 
-  const [difficulty, setDifficulty] = useState("HitStand"); //State to hold which randomizer to use
-
   const [correct_answer, setAnswer] = useState("Hit"); // Correct answer for dealer/player pair, passed as state to component
   const [score, setScore] = useState([0, 1]); // first number is score, second number is total questions answered
   const [answered, setAnswered] = useState(false); //false means user has not submitted an answer
@@ -36,15 +34,19 @@ function App() {
 
   //Generate new card set and answer
   //change the function inside useState depending on which randomizer you want to use
-  const [randomizer, setRandomizer] = useState("HitStand"); //State to hold which randomizer function to use
+  const [randomizer, setRandomizer] = useState("HitStand"); //State to hold which randomizer function to use, pass this into next button
   const randomizer_options = [
     { name: "Hit / Stand only"},
-    { name: "Any card combination (Random)"},
+    { name: "Any cards (Random)"},
   ]
+
+  //Default randomizer function is Random()
   const [random, setRandom] = useState(Random()); //State to hold dealer/player pair
+
   if (correct_answer != random.answer) {
     setAnswer(random.answer);
   }
+  
   return (
     <div>
 
@@ -58,21 +60,21 @@ function App() {
             <Dropdown value={randomizer} onChange={(e) => setRandomizer(() => {
               console.log(e.value); //TODO: insert function that changes randomizer here
               if (e.value == "Hit / Stand only") {
-                setDifficulty(HitStand());
+                console.log("Hit stand")
               }
               else {
-                setDifficulty(Random());
+                console.log("Random");
               }
               return e.value;
             })} options={randomizer_options} optionLabel="name" 
-              placeholder="Select a card set" className="w-full md:w-14rem dropdown" />
+              placeholder="Select a card set " className="w-full md:w-14rem dropdown" />
         </div>
       </div>
 
       <div className="dealer_block">
 
         <div className="hole_card card">
-          {renderHoleCard()}
+          {renderHoleCard()} 
         </div>
         <div className={`dealer_card card ${(random.dealer_card_string).includes("♥") || (random.dealer_card_string).includes("♦") ? "heart_or_diamond" : "club_or_spade"}`}>{random.dealer_card_string}</div>
 
