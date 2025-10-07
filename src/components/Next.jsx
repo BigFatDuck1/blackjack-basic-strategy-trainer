@@ -26,12 +26,12 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
         setAnswered(false); //Changes state of answered to false
         setScore([score[0], score[1] + 1]);
         let newPair = HitStand(); //TODO: dynamically change this function based on difficulty/randomizer state
-        // if (randomizer == "HitStand") {
-        //     newPair = HitStand();
-        // }
-        // else if (randomizer == "Random") {
-        //     newPair = Random();
-        // }
+        if (randomizer == "HitStand") {
+            newPair = HitStand();
+        }
+        else if (randomizer == "Random") {
+            newPair = Random();
+        }
         setRandom(newPair); // Generate new dealer/player pair
         setAnswer(newPair.answer); // Set correct answer to the correct move for the new dealer/player pair
         setCorrect_state(null); //Reset correct_state to null for new question

@@ -53,6 +53,12 @@
 .p-placeholder {
   padding-right: 0.3rem;
 }
+.p-tooltip {
+  font-size: 0.5rem;
+  background-color: #1a1b26;
+  border-radius: 6px;
+  opacity: 70%;
+}
 
 .dealer_block, .player_block {
   display: grid;

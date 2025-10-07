@@ -33,8 +33,8 @@ function App() {
   }
 
   //Generate new card set and answer
-  //change the function inside useState depending on which randomizer you want to use
-  const [randomizer, setRandomizer] = useState("HitStand"); //State to hold which randomizer function to use, pass this into next button
+  const [dropdown, setDropdown] = useState("HitStand"); 
+  const [randomizer, setRandomizer] = useState();
   const randomizer_options = [
     { name: "Hit / Stand only"},
     { name: "Any cards (Random)"},
@@ -57,17 +57,17 @@ function App() {
         </div>
 
           <div className="difficulty_box">
-            <Dropdown value={randomizer} onChange={(e) => setRandomizer(() => {
-              console.log(e.value); //TODO: insert function that changes randomizer here
-              if (e.value == "Hit / Stand only") {
-                console.log("Hit stand")
+            <Dropdown value={dropdown} onChange={(e) =>  {
+              if (e.value.name == "Hit / Stand only") {
+                setRandomizer("HitStand");
               }
-              else {
-                console.log("Random");
+              else if (e.value.name == "Any cards (Random)") {
+                setRandomizer("Random");
               }
-              return e.value;
-            })} options={randomizer_options} optionLabel="name" 
-              placeholder="Select a card set " className="w-full md:w-14rem dropdown" />
+              return setDropdown(e.value)
+            }} options={randomizer_options} optionLabel="name" 
+              placeholder="Select a card set " className="w-full md:w-14rem dropdown" tooltip="Refreshes on next" 
+              tooltipOptions={{ position: 'mouse', mouseTrack: true, mouseTrackTop: 15 }} />
         </div>
       </div>
 
