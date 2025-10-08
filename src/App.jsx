@@ -5,6 +5,7 @@ import Buttons from './components/Buttons.jsx'
 //Different set of questions depending on "difficulty" state
 import Random from './components/Random.jsx'
 import HitStand from './components/HitStand.jsx'
+import Hint from './components/Hint.jsx'
 
 import Next from './components/Next.jsx'
 import AnswerText from './components/AnswerText.jsx'
@@ -36,6 +37,11 @@ function App() {
   //Generate new card set and answer
   const [dropdown, setDropdown] = useState("HitStand"); 
   const [randomizer, setRandomizer] = useState();
+  //HitStand
+  //HardTotal
+  //SoftTotal
+  //PairSplit
+  //Random
   const randomizer_options = [
     { name: "Hit / Stand only"},
     { name: "Any cards (Random)"},
@@ -110,15 +116,8 @@ function App() {
         <Next toggle_answer={[answered, setAnswered]} score={score} setScore={setScore} setRandom={setRandom} setAnswer={setAnswer} setCorrect_state={setCorrect_state} randomizer={randomizer} />
       </div>
 
-      {/* Hint dialog; TODO: conditional render based on card set chosen */}
-      <Dialog id="hint_dialog" header="Hit/Stand decisions on Hard-total hands" visible={hint} style={{ width: '50vw' }} onHide={() => {if (!hint) return; showHint(false); }}>
-                <p className="m-0">
-                * Stand on all hard totals of 17 and higher.<br />
-                * When the dealer is showing an upcard of 7, 8, 9, T, A, hit all hands until your cards total 17 or higher.<br />
-                * Stand on hard totals of 13, 14, 15, 16 vs. dealer upcard of 2, 3, 4, 5, 6; otherwise hit.<br />
-                * Stand on hard total of 12 vs. dealer upcard of 4, 5, 6; otherwise hit.<br />
-                </p>
-      </Dialog>
+      < Hint id="hint_dialog" hint={hint} showHint={showHint} which_hint={randomizer} />
+
     
     </div>
     )
