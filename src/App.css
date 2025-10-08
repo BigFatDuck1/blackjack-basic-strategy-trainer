@@ -202,6 +202,7 @@
   background-color: #1a1b26;
   border-radius: 20px;
   padding: 0.2rem;
+  flex-direction: column;
 }
 #hint_dialog p {
   text-align: left;
@@ -212,6 +213,9 @@
 #hint_dialog_header {
   font-style: italic;
   font-weight: bold;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  color: #ffcc00;
 }
 .p-dialog-header-icon {
   background-color: transparent;
@@ -219,4 +223,26 @@
 }
 .p-dialog-header-icon:hover {
   transform: scale(1.2);
+}
+
+/* Menu in hint dialog */
+.p-menubar-root-list {
+  width: 80%;
+  height: 100%;
+  justify-content: center;
+  gap: 3%;
+}
+.p-menuitem {
+  height: 100%;
+  background-color: #1a1b26;
+  border-radius: 6px;
+}
+.p-menuitem-text {
+  color: #fcffe5;
+}
+.p-menuitem-text:hover {
+  color: #ffcc00;
+}
+.p-menuitem-text:focus {
+  color: #ffcc00;
 }

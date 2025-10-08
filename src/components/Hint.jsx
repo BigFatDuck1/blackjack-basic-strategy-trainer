@@ -2,6 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import 'primeicons/primeicons.css';
 import { Dialog } from 'primereact/dialog'
+import { Menubar } from 'primereact/menubar';
+import { Menu } from 'primereact/menu';
+
 
 //HitStand
 //HardTotal
@@ -51,8 +54,32 @@ function Hint({ hint, showHint, which_hint }) {
         setChildHint(which_hint); //Update child_hint to new which_hint
     }
 
+    const menu_items = [
+        {
+            label: "Hit / Stand",
+            command: () => {setChildHint("HitStand")},
+        },
+        {
+            label: "Hard Total",
+            command: () => {setChildHint("HardTotal")},
+        },
+        {
+            label: "Soft Total",
+            command: () => {setChildHint("SoftTotal")},
+        },
+        {
+            label: "Splitting pairs",
+            command: () => {setChildHint("PairSplit")},
+        },
+        {
+            label: "Full basic strategy",
+            command: () => {setChildHint("Random")},
+        },
+    ]
+
     return (
         <Dialog id="hint_dialog" header={child_hint} visible={hint} style={{ width: '50vw' }} onHide={() => {if (!hint) return; showHint(false); }}>
+                        <Menubar model={menu_items} />
                         <p className="m-0">
                             {excerpt[child_hint]}
                         </p>
