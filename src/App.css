@@ -93,6 +93,10 @@
 .hole_card {
   opacity: 25%;
 }
+.hole_card:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
 
 .heart_or_diamond {
   color: rgb(255, 51, 0);
