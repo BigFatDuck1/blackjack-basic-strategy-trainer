@@ -6,6 +6,8 @@ import Buttons from './components/Buttons.jsx'
 import Random from './components/Random.jsx'
 import HitStand from './components/HitStand.jsx'
 import HardTotal from './components/HardTotal.jsx'
+import SoftTotal from './components/SoftTotal.jsx'
+
 import Hint from './components/Hint.jsx'
 
 import Next from './components/Next.jsx'
@@ -44,6 +46,7 @@ function App() {
   const randomizer_options = [
     { name: "Hit / Stand only"},
     { name: "Hard Totals only"},
+    { name: "Soft Totals only"},
     { name: "Any cards (Random)"},
   ]
 
@@ -81,6 +84,10 @@ function App() {
                 case "Any cards (Random)":
                   setRandom(Random());
                   setRandomizer("Random");
+                  break;
+                case "Soft Totals only":
+                  setRandom(SoftTotal());
+                  setRandomizer("SoftTotal");
                   break;
                 //TODO: add all cases
               }
