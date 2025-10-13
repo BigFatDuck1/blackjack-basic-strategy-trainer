@@ -7,6 +7,7 @@ import Random from './components/Random.jsx'
 import HitStand from './components/HitStand.jsx'
 import HardTotal from './components/HardTotal.jsx'
 import SoftTotal from './components/SoftTotal.jsx'
+import PairSplits from './components/PairSplits.jsx'
 
 import Hint from './components/Hint.jsx'
 
@@ -48,6 +49,7 @@ function App() {
     { name: "Hard Totals only"},
     { name: "Soft Totals only"},
     { name: "Any cards (Random)"},
+    { name: "Pair Splits only"}
   ]
 
   //Default randomizer function is Random()
@@ -81,16 +83,19 @@ function App() {
                   setRandom(HardTotal());
                   setRandomizer("HardTotal");
                   break;
-                case "Any cards (Random)":
-                  setRandom(Random());
-                  setRandomizer("Random");
-                  break;
-                case "Soft Totals only":
-                  setRandom(SoftTotal());
-                  setRandomizer("SoftTotal");
-                  break;
-                //TODO: add all cases
-              }
+                  case "Soft Totals only":
+                    setRandom(SoftTotal());
+                    setRandomizer("SoftTotal");
+                    break;
+                    case "Pair Splits only":
+                      setRandom(PairSplits());
+                      setRandomizer("PairSplits");
+                      break;
+                    case "Any cards (Random)":
+                      setRandom(Random());
+                      setRandomizer("Random");
+                      break;
+                    }
               return setDropdown(e.value)
             }} options={randomizer_options} optionLabel="name" 
               placeholder="Select a card set " className="w-full md:w-14rem dropdown" tooltip="Default: Hit/Stand" 

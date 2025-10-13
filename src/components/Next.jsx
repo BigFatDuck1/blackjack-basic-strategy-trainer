@@ -3,6 +3,8 @@ import Random from "./Random.jsx";
 import HitStand from "./HitStand.jsx";
 import HardTotal from "./HardTotal.jsx";
 import SoftTotal from "./SoftTotal.jsx";
+import PairSplits from './PairSplits.jsx'
+
 import { PrimeReactProvider } from "primereact/api";
 import { Button } from 'primereact/button';
 
@@ -37,6 +39,9 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
                 break;
             case "SoftTotal":
                 newPair = SoftTotal();
+                break;
+            case "PairSplits":
+                newPair = PairSplits();
                 break;
             case "Random":
                 newPair = Random();
