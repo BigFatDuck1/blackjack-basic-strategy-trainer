@@ -1,6 +1,7 @@
 import React from "react";
 import Random from "./Random.jsx";
 import HitStand from "./HitStand.jsx";
+import HardTotal from "./HardTotal.jsx";
 import { PrimeReactProvider } from "primereact/api";
 import { Button } from 'primereact/button';
 
@@ -26,11 +27,16 @@ function Next({ toggle_answer, score, setScore, setRandom, setAnswer, setCorrect
         setAnswered(false); //Changes state of answered to false
         setScore([score[0], score[1] + 1]);
         let newPair = HitStand(); //TODO: dynamically change this function based on difficulty/randomizer state
-        if (randomizer == "HitStand") {
-            newPair = HitStand();
-        }
-        else if (randomizer == "Random") {
-            newPair = Random();
+        switch (randomizer) {
+            case "HitStand":
+                newPair = HitStand();
+                break;
+            case "HardTotal":
+                newPair = HardTotal();
+                break;
+            case "Random":
+                newPair = Random();
+                break;
         }
         setRandom(newPair); // Generate new dealer/player pair
         setAnswer(newPair.answer); // Set correct answer to the correct move for the new dealer/player pair

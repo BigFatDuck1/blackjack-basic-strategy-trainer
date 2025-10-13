@@ -5,6 +5,7 @@ import Buttons from './components/Buttons.jsx'
 //Different set of questions depending on "difficulty" state
 import Random from './components/Random.jsx'
 import HitStand from './components/HitStand.jsx'
+import HardTotal from './components/HardTotal.jsx'
 import Hint from './components/Hint.jsx'
 
 import Next from './components/Next.jsx'
@@ -12,8 +13,6 @@ import AnswerText from './components/AnswerText.jsx'
 import 'primeicons/primeicons.css';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog'
-
 
 function App() {
 
@@ -44,6 +43,7 @@ function App() {
   //Random
   const randomizer_options = [
     { name: "Hit / Stand only"},
+    { name: "Hard Totals only"},
     { name: "Any cards (Random)"},
   ]
 
@@ -68,15 +68,25 @@ function App() {
 
           <div className="difficulty_box">
             <Dropdown value={dropdown} onChange={(e) =>  {
-              if (e.value.name == "Hit / Stand only") {
-                setRandomizer("HitStand");
-              }
-              else if (e.value.name == "Any cards (Random)") {
-                setRandomizer("Random");
+
+              switch (e.value.name) {
+                case "Hit / Stand only":
+                  setRandom(HitStand());
+                  setRandomizer("HitStand");
+                  break;
+                case "Hard Totals only":
+                  setRandom(HardTotal());
+                  setRandomizer("HardTotal");
+                  break;
+                case "Any cards (Random)":
+                  setRandom(Random());
+                  setRandomizer("Random");
+                  break;
+                //TODO: add all cases
               }
               return setDropdown(e.value)
             }} options={randomizer_options} optionLabel="name" 
-              placeholder="Select a card set " className="w-full md:w-14rem dropdown" tooltip="Refreshes on next" 
+              placeholder="Select a card set " className="w-full md:w-14rem dropdown" tooltip="Default: Hit/Stand" 
               tooltipOptions={{ position: 'mouse', mouseTrack: true, mouseTrackTop: 15 }} />
         </div>
       </div>
